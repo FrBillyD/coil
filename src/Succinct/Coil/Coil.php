@@ -8,4 +8,8 @@ class Coil {
 		echo 'Welcome to coil!' . PHP_EOL;
 	}
 
+	public function test() {
+		echo "Testing!" . PHP_EOL;
+	}
+
 }
