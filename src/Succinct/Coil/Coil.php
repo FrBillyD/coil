@@ -8,8 +8,21 @@ class Coil {
 		echo 'Welcome to coil!' . PHP_EOL;
 	}
 
-	public function test() {
-		echo "Testing!" . PHP_EOL;
+	public function set($option, $value) {
+
 	}
 
+	/**
+	 * Create our curl instance
+	 */
+	protected function create() {
+
+	}
+
+	/**
+	 * Execute curl call
+	 */
+	public function execute() {
+		
+	}
 }
