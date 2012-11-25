@@ -9,7 +9,7 @@ class Coil {
         $instance = new Coil();
         $instance->setUrl($url);
         $instance->setReturnTransfer($returnTransfer);
-        return $this->execute();
+        return $instance->execute();
     }
 
     public static function post($url, $arrFields, $returnTransfer = true){
