@@ -5,8 +5,11 @@ namespace Succinct\Coil;
 class Coil {
 	private $curl;
 
-    public static function get($url, $returnTransfer = true){
+    public static function get($url, $arrFields = null, $returnTransfer = true){
         $instance = new Coil();
+        if (is_array($arrFields)) {
+            $url .= '?' . http_build_query($arrFields);
+        }
         $instance->setUrl($url);
         $instance->setReturnTransfer($returnTransfer);
         return $instance->execute();
@@ -35,11 +38,7 @@ class Coil {
     }
 
     public function setPostFields($arr){
-        $str = '';
-        foreach ($arr as $key => $val) {
-            $str .= $key . '=' . urlencode($val) . '&';
-        }
-        $this->set(CURLOPT_POSTFIELDS, $str);
+        $this->set(CURLOPT_POSTFIELDS, http_build_query($arr));
     }
 
 	public function __construct() {
