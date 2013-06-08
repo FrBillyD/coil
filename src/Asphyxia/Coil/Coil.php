@@ -1,6 +1,6 @@
 <?php
 
-namespace Succinct\Coil;
+namespace Asphyxia\Coil;
 
 class Coil {
 	private $curl;

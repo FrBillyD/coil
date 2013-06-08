@@ -1,5 +1,5 @@
 {
-    "name": "succinct/coil",
+    "name": "asphyxia/coil",
     "description": "Coil is an abstraction layer for PHP's cURL functions.",
     "require": {
         "php": ">=5.0"
@@ -9,7 +9,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Succinct\\Coil": "src/"
+            "Asphyxia\\Coil": "src/"
         }
     }
 }
