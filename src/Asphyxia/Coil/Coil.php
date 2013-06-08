@@ -1,11 +1,30 @@
 <?php
-
+/*
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ * 
+ * @copyright Copyleft
+ */
 namespace Asphyxia\Coil;
 
+/**
+ * Coil is an abstraction layer for PHP's cURL functions.
+ * 
+ * @package Asphyxia\Coil
+ */
 class Coil {
-	private $curl;
 
-    public static function get($url, $arrFields = null, $returnTransfer = true){
+    private $curl;
+
+    /**
+     * Executes a GET request through CURL
+     * 
+     * @param String $url
+     * @param Array $arrFields
+     * @param Boolean $returnTransfer
+     * @return String
+     */
+    public static function get($url, $arrFields = null, $returnTransfer = true) {
         $instance = new Coil();
         if (is_array($arrFields)) {
             $url .= '?' . http_build_query($arrFields);
@@ -15,7 +34,15 @@ class Coil {
         return $instance->execute();
     }
 
-    public static function post($url, $arrFields, $returnTransfer = true){
+    /**
+     * Executes a POST request through CURL
+     * 
+     * @param String $url
+     * @param Array $arrFields
+     * @param Boolean $returnTransfer
+     * @return String
+     */
+    public static function post($url, $arrFields, $returnTransfer = true) {
         $instance = new Coil();
         $instance->setUrl($url);
         $instance->setPost(true);
@@ -25,43 +52,75 @@ class Coil {
     }
 
     /* Getters and setters */
-    public function setUrl($url){
+
+    /**
+     * Sets CURLOPT option
+     * 
+     * @param type $url
+     */
+    public function setUrl($url) {
         $this->set(CURLOPT_URL, $url);
     }
 
-    public function setPost($bool){
+    /**
+     * Sets CURLOPT_POST option
+     * 
+     * @param type $bool
+     */
+    public function setPost($bool) {
         $this->set(CURLOPT_POST, $bool);
     }
 
-    public function setReturnTransfer($bool){
+    /**
+     * Sets CURLOPT_RETURNTRANSFER option
+     * 
+     * @param type $bool
+     */
+    public function setReturnTransfer($bool) {
         $this->set(CURLOPT_RETURNTRANSFER, $bool);
     }
 
-    public function setPostFields($arr){
+    /**
+     * Sets curl options CURLOPT_POSTFIELDS for posts
+     * 
+     * @param Array $arr
+     */
+    public function setPostFields($arr) {
         $this->set(CURLOPT_POSTFIELDS, http_build_query($arr));
     }
 
-	public function __construct() {
+    /**
+     * Creates a new Coil instance
+     */
+    public function __construct() {
         $this->curl = curl_init();
-	}
+    }
 
-	public function set($option, $value) {
+    /**
+     * Sets curl options through curl_setopt function
+     * @param type $option
+     * @param type $value
+     */
+    public function set($option, $value) {
         curl_setopt($this->curl, $option, $value);
-	}
+    }
 
-	/**
-	 * Create our curl instance
-	 */
-	protected function create() {
+    /**
+     * Deprecated
+     */
+    protected function create() {
+        
+    }
 
-	}
-
-	/**
-	 * Execute curl call
-	 */
-	public function execute() {
-        $this->result= curl_exec($this->curl);
-        curl_close ($this->curl);		
+    /**
+     * Executes the call to curl_exec with the setted url
+     * 
+     * @return String curl_exec call result
+     */
+    public function execute() {
+        $this->result = curl_exec($this->curl);
+        curl_close($this->curl);
         return $this->result;
-	}
+    }
+
 }
