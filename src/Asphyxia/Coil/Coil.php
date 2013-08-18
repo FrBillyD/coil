@@ -167,6 +167,10 @@ class Coil
      */
     public function setOptions($arrOptions)
     {
+        if (!is_array($arrOptions)) {
+            return;
+        }
+
         foreach ($arrOptions as $key => $value) {
             $this->set($key, $value);
         }
