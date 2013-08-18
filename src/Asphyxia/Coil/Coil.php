@@ -142,11 +142,13 @@ class Coil
 
     /**
      * Creates a new Coil instance
+     * @param Array $arrOptions
      */
-    public function __construct()
+    public function __construct($arrOptions = null)
     {
         $this->curl = curl_init();
         $this->set(CURLOPT_USERAGENT, self::$userAgent);
+        $this->setOptions($arrOptions);
     }
 
     /**
